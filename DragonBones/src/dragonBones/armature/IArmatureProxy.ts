@@ -1,5 +1,6 @@
 import { IEventDispatcher } from "../event/IEventDispatcher";
 import { Armature } from "./Armature";
+import { Animation } from "../animation/Animation";
 
 /**
  * The MIT License (MIT)
