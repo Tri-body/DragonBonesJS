@@ -62,7 +62,7 @@ var BaseFactory = /** @class */ (function () {
                 }
             }
         }
-        if (this.autoSearch) {
+        if (this.autoSearch) { // Will be search all data, if the autoSearch is true.
             for (var textureAtlasName_1 in this._textureAtlasDataMap) {
                 textureAtlasDataList = this._textureAtlasDataMap[textureAtlasName_1];
                 for (var i = 0, l = textureAtlasDataList.length; i < l; ++i) {
@@ -90,7 +90,7 @@ var BaseFactory = /** @class */ (function () {
                 armatureData = dragonBonesData.getArmature(armatureName);
             }
         }
-        if (!armatureData && (!dragonBonesName || this.autoSearch)) {
+        if (!armatureData && (!dragonBonesName || this.autoSearch)) { // Will be search all data, if do not give a data name or the autoSearch is true.
             for (var eachDragonBonesName in this._dragonBonesDataMap) {
                 dragonBonesData = this._dragonBonesDataMap[eachDragonBonesName];
                 if (!dragonBonesName || dragonBonesData.autoSearch) {

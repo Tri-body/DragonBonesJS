@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseTimelineState_1 = require("./BaseTimelineState");
 var DragonBones_1 = require("../core/DragonBones");
 var EventObject_1 = require("../event/EventObject");
@@ -21,7 +12,7 @@ var ColorTransform_1 = require("../geom/ColorTransform");
  * @private
  */
 var AnimationTimelineState = /** @class */ (function (_super) {
-    __extends(AnimationTimelineState, _super);
+    tslib_1.__extends(AnimationTimelineState, _super);
     function AnimationTimelineState() {
         return _super.call(this) || this;
     }
@@ -115,18 +106,18 @@ var AnimationTimelineState = /** @class */ (function (_super) {
                         if (!crossedFrame) {
                             var prevFrameIndex = Math.floor(prevTime * this._frameRate);
                             crossedFrame = this._timelineData.frames[prevFrameIndex];
-                            if (this._currentPlayTimes === prevPlayTimes) {
-                                if (crossedFrame === currentFrame) {
+                            if (this._currentPlayTimes === prevPlayTimes) { // Start.
+                                if (crossedFrame === currentFrame) { // Uncrossed.
                                     crossedFrame = null;
                                 }
                             }
                         }
                         while (crossedFrame) {
                             if (this._position <= crossedFrame.position &&
-                                crossedFrame.position <= this._position + this._duration) {
+                                crossedFrame.position <= this._position + this._duration) { // Support interval play.
                                 this._onCrossFrame(crossedFrame);
                             }
-                            if (loopCompleteEvent && crossedFrame === this._timelineData.frames[0]) {
+                            if (loopCompleteEvent && crossedFrame === this._timelineData.frames[0]) { // Add loop complete event after first frame.
                                 this._armature._bufferEvent(loopCompleteEvent, EventObject_1.EventObject.LOOP_COMPLETE);
                                 loopCompleteEvent = null;
                             }
@@ -140,23 +131,23 @@ var AnimationTimelineState = /** @class */ (function (_super) {
                         if (!crossedFrame) {
                             var prevFrameIndex = Math.floor(prevTime * this._frameRate);
                             crossedFrame = this._timelineData.frames[prevFrameIndex];
-                            if (this._currentPlayTimes === prevPlayTimes) {
-                                if (prevTime <= crossedFrame.position) {
+                            if (this._currentPlayTimes === prevPlayTimes) { // Start.
+                                if (prevTime <= crossedFrame.position) { // Crossed.
                                     crossedFrame = crossedFrame.prev;
                                 }
-                                else if (crossedFrame === currentFrame) {
+                                else if (crossedFrame === currentFrame) { // Uncrossed.
                                     crossedFrame = null;
                                 }
                             }
                         }
                         while (crossedFrame) {
                             crossedFrame = crossedFrame.next;
-                            if (loopCompleteEvent && crossedFrame === this._timelineData.frames[0]) {
+                            if (loopCompleteEvent && crossedFrame === this._timelineData.frames[0]) { // Add loop complete event before first frame.
                                 this._armature._bufferEvent(loopCompleteEvent, EventObject_1.EventObject.LOOP_COMPLETE);
                                 loopCompleteEvent = null;
                             }
                             if (this._position <= crossedFrame.position &&
-                                crossedFrame.position <= this._position + this._duration) {
+                                crossedFrame.position <= this._position + this._duration) { // Support interval play.
                                 this._onCrossFrame(crossedFrame);
                             }
                             if (crossedFrame === currentFrame) {
@@ -168,13 +159,13 @@ var AnimationTimelineState = /** @class */ (function (_super) {
             }
             else if (this._frameCount > 0 && !this._currentFrame) {
                 this._currentFrame = this._timelineData.frames[0];
-                if (this._currentPlayTimes === prevPlayTimes) {
+                if (this._currentPlayTimes === prevPlayTimes) { // Start.
                     if (prevTime <= this._currentFrame.position) {
                         this._onCrossFrame(this._currentFrame);
                     }
                 }
-                else if (this._position <= this._currentFrame.position) {
-                    if (!isReverse && loopCompleteEvent) {
+                else if (this._position <= this._currentFrame.position) { // Loop complete.
+                    if (!isReverse && loopCompleteEvent) { // Add loop complete event before first frame.
                         this._armature._bufferEvent(loopCompleteEvent, EventObject_1.EventObject.LOOP_COMPLETE);
                         loopCompleteEvent = null;
                     }
@@ -203,7 +194,7 @@ exports.AnimationTimelineState = AnimationTimelineState;
  * @private
  */
 var ZOrderTimelineState = /** @class */ (function (_super) {
-    __extends(ZOrderTimelineState, _super);
+    tslib_1.__extends(ZOrderTimelineState, _super);
     function ZOrderTimelineState() {
         return _super.call(this) || this;
     }
@@ -222,7 +213,7 @@ exports.ZOrderTimelineState = ZOrderTimelineState;
  * @private
  */
 var BoneTimelineState = /** @class */ (function (_super) {
-    __extends(BoneTimelineState, _super);
+    tslib_1.__extends(BoneTimelineState, _super);
     function BoneTimelineState() {
         var _this = _super.call(this) || this;
         _this._transform = new Transform_1.Transform();
@@ -315,11 +306,11 @@ var BoneTimelineState = /** @class */ (function (_super) {
             else {
                 tweenProgress = this._tweenProgress;
             }
-            if (this._animationState.additiveBlending) {
+            if (this._animationState.additiveBlending) { // Additive blending.
                 this._transform.x = currentTransform.x + this._durationTransform.x * tweenProgress;
                 this._transform.y = currentTransform.y + this._durationTransform.y * tweenProgress;
             }
-            else {
+            else { // Normal blending.
                 this._transform.x = this._originalTransform.x + currentTransform.x + this._durationTransform.x * tweenProgress;
                 this._transform.y = this._originalTransform.y + currentTransform.y + this._durationTransform.y * tweenProgress;
             }
@@ -333,11 +324,11 @@ var BoneTimelineState = /** @class */ (function (_super) {
             else {
                 tweenProgress = this._tweenProgress;
             }
-            if (this._animationState.additiveBlending) {
+            if (this._animationState.additiveBlending) { // Additive blending.
                 this._transform.skewX = currentTransform.skewX + this._durationTransform.skewX * tweenProgress;
                 this._transform.skewY = currentTransform.skewY + this._durationTransform.skewY * tweenProgress;
             }
-            else {
+            else { // Normal blending.
                 this._transform.skewX = Transform_1.Transform.normalizeRadian(this._originalTransform.skewX + currentTransform.skewX + this._durationTransform.skewX * tweenProgress);
                 this._transform.skewY = Transform_1.Transform.normalizeRadian(this._originalTransform.skewY + currentTransform.skewY + this._durationTransform.skewY * tweenProgress);
             }
@@ -351,11 +342,11 @@ var BoneTimelineState = /** @class */ (function (_super) {
             else {
                 tweenProgress = this._tweenProgress;
             }
-            if (this._animationState.additiveBlending) {
+            if (this._animationState.additiveBlending) { // Additive blending.
                 this._transform.scaleX = currentTransform.scaleX + this._durationTransform.scaleX * tweenProgress;
                 this._transform.scaleY = currentTransform.scaleY + this._durationTransform.scaleY * tweenProgress;
             }
-            else {
+            else { // Normal blending.
                 this._transform.scaleX = this._originalTransform.scaleX * (currentTransform.scaleX + this._durationTransform.scaleX * tweenProgress);
                 this._transform.scaleY = this._originalTransform.scaleY * (currentTransform.scaleY + this._durationTransform.scaleY * tweenProgress);
             }
@@ -424,7 +415,7 @@ exports.BoneTimelineState = BoneTimelineState;
  * @private
  */
 var SlotTimelineState = /** @class */ (function (_super) {
-    __extends(SlotTimelineState, _super);
+    tslib_1.__extends(SlotTimelineState, _super);
     function SlotTimelineState() {
         var _this = _super.call(this) || this;
         _this._color = new ColorTransform_1.ColorTransform();
@@ -569,7 +560,7 @@ exports.SlotTimelineState = SlotTimelineState;
  * @private
  */
 var FFDTimelineState = /** @class */ (function (_super) {
-    __extends(FFDTimelineState, _super);
+    tslib_1.__extends(FFDTimelineState, _super);
     function FFDTimelineState() {
         var _this = _super.call(this) || this;
         _this._ffdVertices = [];

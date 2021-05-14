@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var Point_1 = require("../geom/Point");
 var Transform_1 = require("../geom/Transform");
@@ -20,7 +11,7 @@ var Matrix_1 = require("../geom/Matrix");
  * @version DragonBones 4.5
  */
 var TransformObject = /** @class */ (function (_super) {
-    __extends(TransformObject, _super);
+    tslib_1.__extends(TransformObject, _super);
     /**
      * @internal
      * @private

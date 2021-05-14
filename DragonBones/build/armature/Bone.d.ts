@@ -85,15 +85,15 @@ export declare class Bone extends TransformObject {
     /**
      * @private
      */
-    private _updateGlobalTransformMatrix(isCache);
+    private _updateGlobalTransformMatrix;
     /**
      * @private
      */
-    private _computeIKA();
+    private _computeIKA;
     /**
      * @private
      */
-    private _computeIKB();
+    private _computeIKB;
     /**
      * @internal
      * @private

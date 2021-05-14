@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var DragonBones_1 = require("../core/DragonBones");
 /**
@@ -17,7 +8,7 @@ var DragonBones_1 = require("../core/DragonBones");
  * @private
  */
 var TimelineState = /** @class */ (function (_super) {
-    __extends(TimelineState, _super);
+    tslib_1.__extends(TimelineState, _super);
     function TimelineState() {
         return _super.call(this) || this;
     }
@@ -49,7 +40,7 @@ var TimelineState = /** @class */ (function (_super) {
             currentPlayTimes = 1;
             currentTime = this._mainTimeline._currentTime;
         }
-        else if (!this._mainTimeline || this._timeScale !== 1.0 || this._timeOffset !== 0.0) {
+        else if (!this._mainTimeline || this._timeScale !== 1.0 || this._timeOffset !== 0.0) { // Scale and offset.
             var playTimes = this._animationState.playTimes;
             var totalTime = playTimes * this._duration;
             passedTime *= this._timeScale;
@@ -137,7 +128,7 @@ exports.TimelineState = TimelineState;
  * @private
  */
 var TweenTimelineState = /** @class */ (function (_super) {
-    __extends(TweenTimelineState, _super);
+    tslib_1.__extends(TweenTimelineState, _super);
     function TweenTimelineState() {
         return _super.call(this) || this;
     }
@@ -152,18 +143,18 @@ var TweenTimelineState = /** @class */ (function (_super) {
         if (easing > 2.0) {
             return progress;
         }
-        else if (easing > 1.0) {
+        else if (easing > 1.0) { // Ease in out.
             value = 0.5 * (1.0 - Math.cos(progress * Math.PI));
             easing -= 1.0;
         }
-        else if (easing > 0.0) {
+        else if (easing > 0.0) { // Ease out.
             value = 1.0 - Math.pow(1.0 - progress, 2.0);
         }
-        else if (easing >= -1.0) {
+        else if (easing >= -1.0) { // Ease in.
             easing *= -1.0;
             value = Math.pow(progress, 2.0);
         }
-        else if (easing >= -2.0) {
+        else if (easing >= -2.0) { // Ease out in.
             easing *= -1.0;
             value = Math.acos(1.0 - progress * 2.0) / Math.PI;
             easing -= 1.0;

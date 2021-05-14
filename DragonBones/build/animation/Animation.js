@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var AnimationState_1 = require("./AnimationState");
 var DragonBones_1 = require("../core/DragonBones");
@@ -22,7 +13,7 @@ var AnimationConfig_1 = require("../model/AnimationConfig");
  * @version DragonBones 3.0
  */
 var Animation = /** @class */ (function (_super) {
-    __extends(Animation, _super);
+    tslib_1.__extends(Animation, _super);
     /**
      * @internal
      * @private
@@ -130,7 +121,7 @@ var Animation = /** @class */ (function (_super) {
         if (passedTime < 0.0) {
             passedTime = -passedTime;
         }
-        if (this._armature.inheritAnimation && this._armature._parent) {
+        if (this._armature.inheritAnimation && this._armature._parent) { // Inherit parent animation timeScale.
             passedTime *= this._armature._parent._armature.animation.timeScale;
         }
         if (this.timeScale !== 1.0) {
@@ -148,7 +139,7 @@ var Animation = /** @class */ (function (_super) {
             else {
                 var animationData = animationState.animationData;
                 var cacheFrameRate = animationData.cacheFrameRate;
-                if (this._animationStateDirty && cacheFrameRate > 0.0) {
+                if (this._animationStateDirty && cacheFrameRate > 0.0) { // Update cachedFrameIndices.
                     this._animationStateDirty = false;
                     var bones = this._armature.getBones();
                     for (var i = 0, l = bones.length; i < l; ++i) {
@@ -174,7 +165,7 @@ var Animation = /** @class */ (function (_super) {
                     r++;
                     animationState.returnToPool();
                     this._animationStateDirty = true;
-                    if (this._lastAnimationState === animationState) {
+                    if (this._lastAnimationState === animationState) { // Update last animation state.
                         this._lastAnimationState = null;
                     }
                 }
@@ -187,7 +178,7 @@ var Animation = /** @class */ (function (_super) {
                     }
                     animationState._advanceTime(passedTime, 0.0);
                 }
-                if (i === animationStateCount - 1 && r > 0) {
+                if (i === animationStateCount - 1 && r > 0) { // Modify animation states size.
                     this._animationStates.length -= r;
                     if (!this._lastAnimationState && this._animationStates.length > 0) {
                         this._lastAnimationState = this._animationStates[this._animationStates.length - 1];
@@ -271,7 +262,7 @@ var Animation = /** @class */ (function (_super) {
         if (animationConfig.fadeOutTime < 0.0 || animationConfig.fadeOutTime !== animationConfig.fadeOutTime) {
             animationConfig.fadeOutTime = animationConfig.fadeInTime;
         }
-        if (animationConfig.timeScale <= -100.0 || animationConfig.timeScale !== animationConfig.timeScale) {
+        if (animationConfig.timeScale <= -100.0 || animationConfig.timeScale !== animationConfig.timeScale) { //
             animationConfig.timeScale = 1.0 / animationData.scale;
         }
         if (animationData.frameCount > 1) {
@@ -326,7 +317,7 @@ var Animation = /** @class */ (function (_super) {
                 childArmature.animation.fadeIn(animationName); //
             }
         }
-        if (animationConfig.fadeInTime <= 0.0) {
+        if (animationConfig.fadeInTime <= 0.0) { // Blend animation state, update armature.
             this._armature.advanceTime(0.0);
         }
         if (isStop) {

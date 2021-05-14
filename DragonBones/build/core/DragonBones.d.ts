@@ -6,7 +6,7 @@ export declare const enum ArmatureType {
     None = -1,
     Armature = 0,
     MovieClip = 1,
-    Stage = 2,
+    Stage = 2
 }
 /**
  * @private
@@ -16,7 +16,7 @@ export declare const enum DisplayType {
     Image = 0,
     Armature = 1,
     Mesh = 2,
-    BoundingBox = 3,
+    BoundingBox = 3
 }
 /**
  * @language zh_CN
@@ -27,7 +27,7 @@ export declare const enum BoundingBoxType {
     None = -1,
     Rectangle = 0,
     Ellipse = 1,
-    Polygon = 2,
+    Polygon = 2
 }
 /**
  * @private
@@ -35,7 +35,7 @@ export declare const enum BoundingBoxType {
 export declare const enum EventType {
     None = -1,
     Frame = 10,
-    Sound = 11,
+    Sound = 11
 }
 /**
  * @private
@@ -43,7 +43,7 @@ export declare const enum EventType {
 export declare const enum ActionType {
     None = -1,
     Play = 0,
-    Fade = 4,
+    Fade = 4
 }
 /**
  * @private
@@ -63,7 +63,7 @@ export declare const enum BlendMode {
     Multiply = 10,
     Overlay = 11,
     Screen = 12,
-    Subtract = 13,
+    Subtract = 13
 }
 /**
  * @language zh_CN
@@ -100,7 +100,7 @@ export declare const enum AnimationFadeOutMode {
      * 淡出所有动画。
      * @version DragonBones 4.5
      */
-    All = 4,
+    All = 4
 }
 /**
  * @private

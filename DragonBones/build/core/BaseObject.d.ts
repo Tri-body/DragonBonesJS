@@ -8,7 +8,7 @@ export declare abstract class BaseObject {
     private static _defaultMaxCount;
     private static _maxCountMap;
     private static _poolsMap;
-    private static _returnObject(object);
+    private static _returnObject;
     /**
      * @language zh_CN
      * 设置每种对象池的最大缓存数量。

@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var DragonBones_1 = require("../core/DragonBones");
 var Rectangle_1 = require("../geom/Rectangle");
@@ -24,7 +15,7 @@ var Point_1 = require("../geom/Point");
  * @version DragonBones 3.0
  */
 var ArmatureData = /** @class */ (function (_super) {
-    __extends(ArmatureData, _super);
+    tslib_1.__extends(ArmatureData, _super);
     /**
      * @internal
      * @private
@@ -398,7 +389,7 @@ exports.ArmatureData = ArmatureData;
  * @version DragonBones 3.0
  */
 var BoneData = /** @class */ (function (_super) {
-    __extends(BoneData, _super);
+    tslib_1.__extends(BoneData, _super);
     /**
      * @internal
      * @private
@@ -449,7 +440,7 @@ exports.BoneData = BoneData;
  * @version DragonBones 3.0
  */
 var SlotData = /** @class */ (function (_super) {
-    __extends(SlotData, _super);
+    tslib_1.__extends(SlotData, _super);
     /**
      * @internal
      * @private
@@ -504,7 +495,7 @@ exports.SlotData = SlotData;
  * @private
  */
 var SkinData = /** @class */ (function (_super) {
-    __extends(SkinData, _super);
+    tslib_1.__extends(SkinData, _super);
     function SkinData() {
         var _this = _super.call(this) || this;
         _this.slots = {};
@@ -539,7 +530,7 @@ exports.SkinData = SkinData;
  * @private
  */
 var SkinSlotData = /** @class */ (function (_super) {
-    __extends(SkinSlotData, _super);
+    tslib_1.__extends(SkinSlotData, _super);
     function SkinSlotData() {
         var _this = _super.call(this) || this;
         _this.displays = [];
@@ -588,7 +579,7 @@ exports.SkinSlotData = SkinSlotData;
  * @private
  */
 var DisplayData = /** @class */ (function (_super) {
-    __extends(DisplayData, _super);
+    tslib_1.__extends(DisplayData, _super);
     function DisplayData() {
         var _this = _super.call(this) || this;
         _this.pivot = new Point_1.Point();
@@ -622,7 +613,7 @@ exports.DisplayData = DisplayData;
  * @private
  */
 var MeshData = /** @class */ (function (_super) {
-    __extends(MeshData, _super);
+    tslib_1.__extends(MeshData, _super);
     function MeshData() {
         var _this = _super.call(this) || this;
         _this.slotPose = new Matrix_1.Matrix();
@@ -661,7 +652,7 @@ exports.MeshData = MeshData;
  * @version DragonBones 5.0
  */
 var BoundingBoxData = /** @class */ (function (_super) {
-    __extends(BoundingBoxData, _super);
+    tslib_1.__extends(BoundingBoxData, _super);
     /**
      * @internal
      * @private
@@ -687,16 +678,16 @@ var BoundingBoxData = /** @class */ (function (_super) {
      */
     BoundingBoxData._computeOutCode = function (x, y, xMin, yMin, xMax, yMax) {
         var code = 0 /* InSide */; // initialised as being inside of [[clip window]]
-        if (x < xMin) {
+        if (x < xMin) { // to the left of clip window
             code |= 1 /* Left */;
         }
-        else if (x > xMax) {
+        else if (x > xMax) { // to the right of clip window
             code |= 2 /* Right */;
         }
-        if (y < yMin) {
+        if (y < yMin) { // below the clip window
             code |= 4 /* Top */;
         }
-        else if (y > yMax) {
+        else if (y > yMax) { // above the clip window
             code |= 8 /* Bottom */;
         }
         return code;
@@ -717,11 +708,11 @@ var BoundingBoxData = /** @class */ (function (_super) {
         var outcode0 = BoundingBoxData._computeOutCode(xA, yA, xMin, yMin, xMax, yMax);
         var outcode1 = BoundingBoxData._computeOutCode(xB, yB, xMin, yMin, xMax, yMax);
         while (true) {
-            if (!(outcode0 | outcode1)) {
+            if (!(outcode0 | outcode1)) { // Bitwise OR is 0. Trivially accept and get out of loop
                 intersectionCount = 2;
                 break;
             }
-            else if (outcode0 & outcode1) {
+            else if (outcode0 & outcode1) { // Bitwise AND is not 0. Trivially reject and get out of loop
                 break;
             }
             // failed both tests, so calculate the line segment to clip
@@ -732,28 +723,28 @@ var BoundingBoxData = /** @class */ (function (_super) {
             // At least one endpoint is outside the clip rectangle; pick it.
             var outcodeOut = outcode0 ? outcode0 : outcode1;
             // Now find the intersection point;
-            if (outcodeOut & 4 /* Top */) {
+            if (outcodeOut & 4 /* Top */) { // point is above the clip rectangle
                 x = xA + (xB - xA) * (yMin - yA) / (yB - yA);
                 y = yMin;
                 if (normalRadians) {
                     normalRadian = -Math.PI * 0.5;
                 }
             }
-            else if (outcodeOut & 8 /* Bottom */) {
+            else if (outcodeOut & 8 /* Bottom */) { // point is below the clip rectangle
                 x = xA + (xB - xA) * (yMax - yA) / (yB - yA);
                 y = yMax;
                 if (normalRadians) {
                     normalRadian = Math.PI * 0.5;
                 }
             }
-            else if (outcodeOut & 2 /* Right */) {
+            else if (outcodeOut & 2 /* Right */) { // point is to the right of clip rectangle
                 y = yA + (yB - yA) * (xMax - xA) / (xB - xA);
                 x = xMax;
                 if (normalRadians) {
                     normalRadian = 0;
                 }
             }
-            else if (outcodeOut & 1 /* Left */) {
+            else if (outcodeOut & 1 /* Left */) { // point is to the left of clip rectangle
                 y = yA + (yB - yA) * (xMin - xA) / (xB - xA);
                 x = xMin;
                 if (normalRadians) {

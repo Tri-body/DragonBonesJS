@@ -1,22 +1,13 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var Transform_1 = require("../geom/Transform");
 /**
  * @private
  */
 var TimelineData = /** @class */ (function (_super) {
-    __extends(TimelineData, _super);
+    tslib_1.__extends(TimelineData, _super);
     /**
      * @private
      */
@@ -39,7 +30,7 @@ var TimelineData = /** @class */ (function (_super) {
      */
     TimelineData.prototype._onClear = function () {
         var prevFrame = null;
-        for (var i = 0, l = this.frames.length; i < l; ++i) {
+        for (var i = 0, l = this.frames.length; i < l; ++i) { // Find key frame data.
             var frame = this.frames[i];
             if (prevFrame && frame !== prevFrame) {
                 prevFrame.returnToPool();
@@ -57,7 +48,7 @@ exports.TimelineData = TimelineData;
  * @private
  */
 var ZOrderTimelineData = /** @class */ (function (_super) {
-    __extends(ZOrderTimelineData, _super);
+    tslib_1.__extends(ZOrderTimelineData, _super);
     function ZOrderTimelineData() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -71,7 +62,7 @@ exports.ZOrderTimelineData = ZOrderTimelineData;
  * @private
  */
 var BoneTimelineData = /** @class */ (function (_super) {
-    __extends(BoneTimelineData, _super);
+    tslib_1.__extends(BoneTimelineData, _super);
     function BoneTimelineData() {
         var _this = _super.call(this) || this;
         _this.originalTransform = new Transform_1.Transform();
@@ -92,7 +83,7 @@ exports.BoneTimelineData = BoneTimelineData;
  * @private
  */
 var SlotTimelineData = /** @class */ (function (_super) {
-    __extends(SlotTimelineData, _super);
+    tslib_1.__extends(SlotTimelineData, _super);
     function SlotTimelineData() {
         return _super.call(this) || this;
     }
@@ -110,7 +101,7 @@ exports.SlotTimelineData = SlotTimelineData;
  * @private
  */
 var FFDTimelineData = /** @class */ (function (_super) {
-    __extends(FFDTimelineData, _super);
+    tslib_1.__extends(FFDTimelineData, _super);
     function FFDTimelineData() {
         return _super.call(this) || this;
     }

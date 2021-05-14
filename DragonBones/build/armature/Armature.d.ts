@@ -24,7 +24,7 @@ export declare class Armature extends BaseObject implements IAnimateble {
      * @private
      */
     static toString(): string;
-    private static _onSortSlots(a, b);
+    private static _onSortSlots;
     /**
      * @language zh_CN
      * 是否继承父骨架的动画状态。
@@ -90,9 +90,9 @@ export declare class Armature extends BaseObject implements IAnimateble {
      * @private
      */
     protected _onClear(): void;
-    private _sortBones();
-    private _sortSlots();
-    private _doAction(value);
+    private _sortBones;
+    private _sortSlots;
+    private _doAction;
     /**
      * @private
      */

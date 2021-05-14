@@ -166,7 +166,7 @@ export declare class AnimationState extends BaseObject {
      * @private
      */
     protected _onClear(): void;
-    private _advanceFadeTime(passedTime);
+    private _advanceFadeTime;
     /**
      * @internal
      * @private

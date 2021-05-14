@@ -12,7 +12,7 @@ import { AnimationConfig } from "../model/AnimationConfig";
  * @version DragonBones 3.0
  */
 export declare class Animation extends BaseObject {
-    private static _sortAnimationState(a, b);
+    private static _sortAnimationState;
     /**
      * @private
      */
@@ -50,7 +50,7 @@ export declare class Animation extends BaseObject {
      * @private
      */
     protected _onClear(): void;
-    private _fadeOut(animationConfig);
+    private _fadeOut;
     /**
      * @internal
      * @private

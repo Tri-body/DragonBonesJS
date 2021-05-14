@@ -17,7 +17,7 @@ export declare abstract class FrameData<T> extends BaseObject {
  * @private
  */
 export declare abstract class TweenFrameData<T> extends FrameData<T> {
-    private static _getCurvePoint(x1, y1, x2, y2, x3, y3, x4, y4, t, result);
+    private static _getCurvePoint;
     static samplingEasingCurve(curve: Array<number>, samples: Array<number>): void;
     tweenEasing: number;
     curve: Array<number>;

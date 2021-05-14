@@ -11,7 +11,7 @@ import { AnimationTimelineState } from "./TimelineState";
 export declare const enum TweenType {
     None = 0,
     Once = 1,
-    Always = 2,
+    Always = 2
 }
 /**
  * @internal

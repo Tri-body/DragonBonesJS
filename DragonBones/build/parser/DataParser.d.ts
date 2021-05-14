@@ -145,7 +145,7 @@ export declare abstract class DataParser {
      * @private
      */
     abstract parseTextureAtlasData(rawData: any, textureAtlasData: TextureAtlasData, scale: number): void;
-    private _getTimelineFrameMatrix(animation, timeline, position, transform);
+    private _getTimelineFrameMatrix;
     protected _globalToLocal(armature: ArmatureData): void;
     protected _mergeFrameToAnimationTimeline(framePostion: number, actions: Array<ActionData>, events: Array<EventData>): void;
     /**

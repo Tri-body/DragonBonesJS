@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 /**
  * @language zh_CN
@@ -19,7 +10,7 @@ var BaseObject_1 = require("../core/BaseObject");
  * @version DragonBones 5.0
  */
 var AnimationConfig = /** @class */ (function (_super) {
-    __extends(AnimationConfig, _super);
+    tslib_1.__extends(AnimationConfig, _super);
     /**
      * @internal
      * @private
@@ -111,10 +102,10 @@ var AnimationConfig = /** @class */ (function (_super) {
         if (!currentBone) {
             return;
         }
-        if (this.boneMask.indexOf(name) < 0) {
+        if (this.boneMask.indexOf(name) < 0) { // Add mixing
             this.boneMask.push(name);
         }
-        if (recursive) {
+        if (recursive) { // Add recursive mixing.
             var bones = armature.getBones();
             for (var i = 0, l = bones.length; i < l; ++i) {
                 var bone = bones[i];
@@ -127,14 +118,14 @@ var AnimationConfig = /** @class */ (function (_super) {
     AnimationConfig.prototype.removeBoneMask = function (armature, name, recursive) {
         if (recursive === void 0) { recursive = true; }
         var index = this.boneMask.indexOf(name);
-        if (index >= 0) {
+        if (index >= 0) { // Remove mixing.
             this.boneMask.splice(index, 1);
         }
         if (recursive) {
             var currentBone = armature.getBone(name);
             if (currentBone) {
                 var bones = armature.getBones();
-                if (this.boneMask.length > 0) {
+                if (this.boneMask.length > 0) { // Remove recursive mixing.
                     for (var i = 0, l = bones.length; i < l; ++i) {
                         var bone = bones[i];
                         var index_1 = this.boneMask.indexOf(bone.name);
@@ -143,7 +134,7 @@ var AnimationConfig = /** @class */ (function (_super) {
                         }
                     }
                 }
-                else {
+                else { // Add unrecursive mixing.
                     for (var i = 0, l = bones.length; i < l; ++i) {
                         var bone = bones[i];
                         if (!currentBone.contains(bone)) {

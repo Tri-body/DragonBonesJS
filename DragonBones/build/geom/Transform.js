@@ -8,42 +8,42 @@ var DragonBones_1 = require("../core/DragonBones");
  */
 var Transform = /** @class */ (function () {
     function Transform(
-        /**
-         * @language zh_CN
-         * 水平位移。
-         * @version DragonBones 3.0
-         */
-        x, 
-        /**
-         * @language zh_CN
-         * 垂直位移。
-         * @version DragonBones 3.0
-         */
-        y, 
-        /**
-         * @language zh_CN
-         * 水平倾斜。 (以弧度为单位)
-         * @version DragonBones 3.0
-         */
-        skewX, 
-        /**
-         * @language zh_CN
-         * 垂直倾斜。 (以弧度为单位)
-         * @version DragonBones 3.0
-         */
-        skewY, 
-        /**
-         * @language zh_CN
-         * 水平缩放。
-         * @version DragonBones 3.0
-         */
-        scaleX, 
-        /**
-         * @language zh_CN
-         * 垂直缩放。
-         * @version DragonBones 3.0
-         */
-        scaleY) {
+    /**
+     * @language zh_CN
+     * 水平位移。
+     * @version DragonBones 3.0
+     */
+    x, 
+    /**
+     * @language zh_CN
+     * 垂直位移。
+     * @version DragonBones 3.0
+     */
+    y, 
+    /**
+     * @language zh_CN
+     * 水平倾斜。 (以弧度为单位)
+     * @version DragonBones 3.0
+     */
+    skewX, 
+    /**
+     * @language zh_CN
+     * 垂直倾斜。 (以弧度为单位)
+     * @version DragonBones 3.0
+     */
+    skewY, 
+    /**
+     * @language zh_CN
+     * 水平缩放。
+     * @version DragonBones 3.0
+     */
+    scaleX, 
+    /**
+     * @language zh_CN
+     * 垂直缩放。
+     * @version DragonBones 3.0
+     */
+    scaleY) {
         if (x === void 0) { x = 0.0; }
         if (y === void 0) { y = 0.0; }
         if (skewX === void 0) { skewX = 0.0; }

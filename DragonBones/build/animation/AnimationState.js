@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var TimelineState_1 = require("./TimelineState");
 var EventObject_1 = require("../event/EventObject");
@@ -21,7 +12,7 @@ var EventObject_1 = require("../event/EventObject");
  * @version DragonBones 3.0
  */
 var AnimationState = /** @class */ (function (_super) {
-    __extends(AnimationState, _super);
+    tslib_1.__extends(AnimationState, _super);
     /**
      * @internal
      * @private
@@ -111,7 +102,7 @@ var AnimationState = /** @class */ (function (_super) {
     };
     AnimationState.prototype._advanceFadeTime = function (passedTime) {
         var isFadeOut = this._fadeState > 0;
-        if (this._subFadeState < 0) {
+        if (this._subFadeState < 0) { // Fade start event.
             this._subFadeState = 0;
             var eventType = isFadeOut ? EventObject_1.EventObject.FADE_OUT : EventObject_1.EventObject.FADE_IN;
             if (this._armature.eventDispatcher.hasEvent(eventType)) {
@@ -124,17 +115,17 @@ var AnimationState = /** @class */ (function (_super) {
             passedTime = -passedTime;
         }
         this._fadeTime += passedTime;
-        if (this._fadeTime >= this.fadeTotalTime) {
+        if (this._fadeTime >= this.fadeTotalTime) { // Fade complete.
             this._subFadeState = 1;
             this._fadeProgress = isFadeOut ? 0.0 : 1.0;
         }
-        else if (this._fadeTime > 0.0) {
+        else if (this._fadeTime > 0.0) { // Fading.
             this._fadeProgress = isFadeOut ? (1.0 - this._fadeTime / this.fadeTotalTime) : (this._fadeTime / this.fadeTotalTime);
         }
-        else {
+        else { // Before fade.
             this._fadeProgress = isFadeOut ? 1.0 : 0.0;
         }
-        if (this._subFadeState > 0) {
+        if (this._subFadeState > 0) { // Fade complete event.
             if (!isFadeOut) {
                 this._playheadState |= 1; // x1
                 this._fadeState = 0;
@@ -227,7 +218,7 @@ var AnimationState = /** @class */ (function (_super) {
         var boneTimelineStates = {};
         var slotTimelineStates = {};
         var ffdTimelineStates = {};
-        for (var i = 0, l = this._boneTimelines.length; i < l; ++i) {
+        for (var i = 0, l = this._boneTimelines.length; i < l; ++i) { // Creat bone timelines map.
             var boneTimelineState = this._boneTimelines[i];
             boneTimelineStates[boneTimelineState.bone.name] = boneTimelineState;
         }
@@ -238,10 +229,10 @@ var AnimationState = /** @class */ (function (_super) {
             if (this.containsBoneMask(boneTimelineName)) {
                 var boneTimelineData = this._animationData.getBoneTimeline(boneTimelineName);
                 if (boneTimelineData) {
-                    if (boneTimelineStates[boneTimelineName]) {
+                    if (boneTimelineStates[boneTimelineName]) { // Remove bone timeline from map.
                         delete boneTimelineStates[boneTimelineName];
                     }
-                    else {
+                    else { // Create new bone timeline.
                         var boneTimelineState = BaseObject_1.BaseObject.borrowObject(TimelineState_1.BoneTimelineState);
                         boneTimelineState.bone = bone;
                         boneTimelineState._init(this._armature, this, boneTimelineData);
@@ -250,17 +241,17 @@ var AnimationState = /** @class */ (function (_super) {
                 }
             }
         }
-        for (var k in boneTimelineStates) {
+        for (var k in boneTimelineStates) { // Remove bone timelines.
             var boneTimelineState = boneTimelineStates[k];
             boneTimelineState.bone.invalidUpdate(); //
             this._boneTimelines.splice(this._boneTimelines.indexOf(boneTimelineState), 1);
             boneTimelineState.returnToPool();
         }
-        for (var i = 0, l = this._slotTimelines.length; i < l; ++i) {
+        for (var i = 0, l = this._slotTimelines.length; i < l; ++i) { // Create slot timelines map.
             var slotTimelineState = this._slotTimelines[i];
             slotTimelineStates[slotTimelineState.slot.name] = slotTimelineState;
         }
-        for (var i = 0, l = this._ffdTimelines.length; i < l; ++i) {
+        for (var i = 0, l = this._ffdTimelines.length; i < l; ++i) { // Create ffd timelines map.
             var ffdTimelineState = this._ffdTimelines[i];
             var display = ffdTimelineState._timelineData.display;
             var meshName = display.inheritAnimation ? display.mesh.name : display.name;
@@ -275,10 +266,10 @@ var AnimationState = /** @class */ (function (_super) {
             if (this.containsBoneMask(parentTimelineName)) {
                 var slotTimelineData = this._animationData.getSlotTimeline(slotTimelineName);
                 if (slotTimelineData) {
-                    if (slotTimelineStates[slotTimelineName]) {
+                    if (slotTimelineStates[slotTimelineName]) { // Remove slot timeline from map.
                         delete slotTimelineStates[slotTimelineName];
                     }
-                    else {
+                    else { // Create new slot timeline.
                         var slotTimelineState = BaseObject_1.BaseObject.borrowObject(TimelineState_1.SlotTimelineState);
                         slotTimelineState.slot = slot;
                         slotTimelineState._init(this._armature, this, slotTimelineData);
@@ -288,10 +279,10 @@ var AnimationState = /** @class */ (function (_super) {
                 var ffdTimelineDatas = this._animationData.getFFDTimeline(this._armature._skinData.name, slotTimelineName);
                 if (ffdTimelineDatas) {
                     for (var k in ffdTimelineDatas) {
-                        if (ffdTimelineStates[k]) {
+                        if (ffdTimelineStates[k]) { // Remove ffd timeline from map.
                             delete ffdTimelineStates[k];
                         }
-                        else {
+                        else { // Create new ffd timeline.
                             var ffdTimelineState = BaseObject_1.BaseObject.borrowObject(TimelineState_1.FFDTimelineState);
                             ffdTimelineState.slot = slot;
                             ffdTimelineState._init(this._armature, this, ffdTimelineDatas[k]);
@@ -313,12 +304,12 @@ var AnimationState = /** @class */ (function (_super) {
                 slot._meshDirty = true;
             }
         }
-        for (var k in slotTimelineStates) {
+        for (var k in slotTimelineStates) { // Remove slot timelines.
             var slotTimelineState = slotTimelineStates[k];
             this._slotTimelines.splice(this._slotTimelines.indexOf(slotTimelineState), 1);
             slotTimelineState.returnToPool();
         }
-        for (var k in ffdTimelineStates) {
+        for (var k in ffdTimelineStates) { // Remove ffd timelines.
             var ffdTimelineState = ffdTimelineStates[k];
             this._ffdTimelines.splice(this._ffdTimelines.indexOf(ffdTimelineState), 1);
             ffdTimelineState.returnToPool();
@@ -337,7 +328,7 @@ var AnimationState = /** @class */ (function (_super) {
         if (this.timeScale !== 1.0) {
             passedTime *= this.timeScale;
         }
-        if (passedTime !== 0.0 && this._playheadState === 3) {
+        if (passedTime !== 0.0 && this._playheadState === 3) { // 11
             this._time += passedTime;
         }
         // Weight.
@@ -361,16 +352,16 @@ var AnimationState = /** @class */ (function (_super) {
             // Update cache.
             if (isCacheEnabled) {
                 var cacheFrameIndex = Math.floor(this._timeline._currentTime * cacheFrameRate); // uint
-                if (this._armature.animation._cacheFrameIndex === cacheFrameIndex) {
+                if (this._armature.animation._cacheFrameIndex === cacheFrameIndex) { // Same cache.
                     isUpdatesTimeline = false;
                     isUpdatesBoneTimeline = false;
                 }
                 else {
                     this._armature.animation._cacheFrameIndex = cacheFrameIndex;
-                    if (this._animationData.cachedFrames[cacheFrameIndex]) {
+                    if (this._animationData.cachedFrames[cacheFrameIndex]) { // Cached.
                         isUpdatesBoneTimeline = false;
                     }
-                    else {
+                    else { // Cache.
                         this._animationData.cachedFrames[cacheFrameIndex] = true;
                     }
                 }
@@ -497,10 +488,10 @@ var AnimationState = /** @class */ (function (_super) {
         if (!currentBone) {
             return;
         }
-        if (this._boneMask.indexOf(name) < 0) {
+        if (this._boneMask.indexOf(name) < 0) { // Add mixing
             this._boneMask.push(name);
         }
-        if (recursive) {
+        if (recursive) { // Add recursive mixing.
             var bones = this._armature.getBones();
             for (var i = 0, l = bones.length; i < l; ++i) {
                 var bone = bones[i];
@@ -521,7 +512,7 @@ var AnimationState = /** @class */ (function (_super) {
     AnimationState.prototype.removeBoneMask = function (name, recursive) {
         if (recursive === void 0) { recursive = true; }
         var index = this._boneMask.indexOf(name);
-        if (index >= 0) {
+        if (index >= 0) { // Remove mixing.
             this._boneMask.splice(index, 1);
         }
         if (recursive) {
@@ -532,7 +523,7 @@ var AnimationState = /** @class */ (function (_super) {
                     for (var i = 0, l = bones.length; i < l; ++i) {
                         var bone = bones[i];
                         var index_1 = this._boneMask.indexOf(bone.name);
-                        if (index_1 >= 0 && currentBone.contains(bone)) {
+                        if (index_1 >= 0 && currentBone.contains(bone)) { // Remove recursive mixing.
                             this._boneMask.splice(index_1, 1);
                         }
                     }
@@ -540,7 +531,7 @@ var AnimationState = /** @class */ (function (_super) {
                 else {
                     for (var i = 0, l = bones.length; i < l; ++i) {
                         var bone = bones[i];
-                        if (!currentBone.contains(bone)) {
+                        if (!currentBone.contains(bone)) { // Add unrecursive mixing.
                             this._boneMask.push(bone.name);
                         }
                     }

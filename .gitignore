@@ -12,3 +12,4 @@ libs/
 .flexLibProperties
 *.swf
 *.fla
+package-lock.json

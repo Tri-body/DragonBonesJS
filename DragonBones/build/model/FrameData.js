@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var Point_1 = require("../geom/Point");
 var Transform_1 = require("../geom/Transform");
@@ -18,7 +9,7 @@ var ColorTransform_1 = require("../geom/ColorTransform");
  * @private
  */
 var FrameData = /** @class */ (function (_super) {
-    __extends(FrameData, _super);
+    tslib_1.__extends(FrameData, _super);
     function FrameData() {
         return _super.call(this) || this;
     }
@@ -35,7 +26,7 @@ exports.FrameData = FrameData;
  * @private
  */
 var TweenFrameData = /** @class */ (function (_super) {
-    __extends(TweenFrameData, _super);
+    tslib_1.__extends(TweenFrameData, _super);
     function TweenFrameData() {
         return _super.call(this) || this;
     }
@@ -56,7 +47,7 @@ var TweenFrameData = /** @class */ (function (_super) {
         var stepIndex = -2;
         for (var i = 0, l = samples.length; i < l; ++i) {
             var t = (i + 1) / (l + 1);
-            while ((stepIndex + 6 < curveCount ? curve[stepIndex + 6] : 1) < t) {
+            while ((stepIndex + 6 < curveCount ? curve[stepIndex + 6] : 1) < t) { // stepIndex + 3 * 2
                 stepIndex += 6;
             }
             var isInCurve = stepIndex >= 0 && stepIndex + 6 < curveCount;
@@ -95,7 +86,7 @@ exports.TweenFrameData = TweenFrameData;
  * @private
  */
 var AnimationFrameData = /** @class */ (function (_super) {
-    __extends(AnimationFrameData, _super);
+    tslib_1.__extends(AnimationFrameData, _super);
     function AnimationFrameData() {
         var _this = _super.call(this) || this;
         _this.actions = [];
@@ -123,7 +114,7 @@ exports.AnimationFrameData = AnimationFrameData;
  * @private
  */
 var ZOrderFrameData = /** @class */ (function (_super) {
-    __extends(ZOrderFrameData, _super);
+    tslib_1.__extends(ZOrderFrameData, _super);
     function ZOrderFrameData() {
         var _this = _super.call(this) || this;
         _this.zOrder = [];
@@ -140,7 +131,7 @@ exports.ZOrderFrameData = ZOrderFrameData;
  * @private
  */
 var BoneFrameData = /** @class */ (function (_super) {
-    __extends(BoneFrameData, _super);
+    tslib_1.__extends(BoneFrameData, _super);
     function BoneFrameData() {
         var _this = _super.call(this) || this;
         _this.transform = new Transform_1.Transform();
@@ -162,7 +153,7 @@ exports.BoneFrameData = BoneFrameData;
  * @private
  */
 var SlotFrameData = /** @class */ (function (_super) {
-    __extends(SlotFrameData, _super);
+    tslib_1.__extends(SlotFrameData, _super);
     function SlotFrameData() {
         return _super.call(this) || this;
     }
@@ -185,7 +176,7 @@ exports.SlotFrameData = SlotFrameData;
  * @private
  */
 var ExtensionFrameData = /** @class */ (function (_super) {
-    __extends(ExtensionFrameData, _super);
+    tslib_1.__extends(ExtensionFrameData, _super);
     function ExtensionFrameData() {
         var _this = _super.call(this) || this;
         _this.tweens = [];

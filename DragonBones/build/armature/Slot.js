@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var TransformObject_1 = require("./TransformObject");
 var Matrix_1 = require("../geom/Matrix");
 var ColorTransform_1 = require("../geom/ColorTransform");
@@ -26,7 +17,7 @@ var Armature_1 = require("./Armature");
  * @version DragonBones 3.0
  */
 var Slot = /** @class */ (function (_super) {
-    __extends(Slot, _super);
+    tslib_1.__extends(Slot, _super);
     /**
      * @internal
      * @private
@@ -85,7 +76,7 @@ var Slot = /** @class */ (function (_super) {
                 this._disposeDisplay(eachDisplay);
             }
         }
-        if (this._meshDisplay && this._meshDisplay !== this._rawDisplay) {
+        if (this._meshDisplay && this._meshDisplay !== this._rawDisplay) { // May be _meshDisplay and _rawDisplay is the same one.
             this._disposeDisplay(this._meshDisplay);
         }
         if (this._rawDisplay) {
@@ -220,7 +211,7 @@ var Slot = /** @class */ (function (_super) {
                     this._pivotX += Slot._helpPoint.x;
                     this._pivotY += Slot._helpPoint.y;
                 }
-                if (this._meshData !== prevMeshData) {
+                if (this._meshData !== prevMeshData) { // Update mesh bones and ffd vertices.
                     if (this._meshData && this._displayData && this._meshData === this._displayData.mesh) {
                         if (this._meshData.skinned) {
                             this._meshBones.length = this._meshData.bones.length;
@@ -323,7 +314,7 @@ var Slot = /** @class */ (function (_super) {
                 this._childArmature._parent = this; // Update child armature parent.
                 this._childArmature.clock = this._armature.clock;
                 if (this._childArmature.inheritAnimation) {
-                    if (this._childArmature.cacheFrameRate === 0) {
+                    if (this._childArmature.cacheFrameRate === 0) { // Set child armature frameRate.
                         var cacheFrameRate = this._armature.cacheFrameRate;
                         if (cacheFrameRate !== 0) {
                             this._childArmature.cacheFrameRate = cacheFrameRate;
@@ -403,7 +394,7 @@ var Slot = /** @class */ (function (_super) {
         if (this._displayDirty) {
             this._displayDirty = false;
             this._updateDisplay();
-            if (this._transformDirty) {
+            if (this._transformDirty) { // Update local matrix. (Only update when both display and transform are dirty.)
                 if (this.origin) {
                     this.global.copyFrom(this.origin).add(this.offset).toMatrix(this._localMatrix);
                 }
@@ -418,27 +409,27 @@ var Slot = /** @class */ (function (_super) {
         }
         if (cacheFrameIndex >= 0 && this._cachedFrameIndices) {
             var cachedFrameIndex = this._cachedFrameIndices[cacheFrameIndex];
-            if (cachedFrameIndex >= 0 && this._cachedFrameIndex === cachedFrameIndex) {
+            if (cachedFrameIndex >= 0 && this._cachedFrameIndex === cachedFrameIndex) { // Same cache.
                 this._transformDirty = false;
             }
-            else if (cachedFrameIndex >= 0) {
+            else if (cachedFrameIndex >= 0) { // Has been Cached.
                 this._transformDirty = true;
                 this._cachedFrameIndex = cachedFrameIndex;
             }
-            else if (this._transformDirty || this._parent._childrenTransformDirty) {
+            else if (this._transformDirty || this._parent._childrenTransformDirty) { // Dirty.
                 this._transformDirty = true;
                 this._cachedFrameIndex = -1;
             }
-            else if (this._cachedFrameIndex >= 0) {
+            else if (this._cachedFrameIndex >= 0) { // Same cache, but not set index yet.
                 this._transformDirty = false;
                 this._cachedFrameIndices[cacheFrameIndex] = this._cachedFrameIndex;
             }
-            else {
+            else { // Dirty.
                 this._transformDirty = true;
                 this._cachedFrameIndex = -1;
             }
         }
-        else if (this._transformDirty || this._parent._childrenTransformDirty) {
+        else if (this._transformDirty || this._parent._childrenTransformDirty) { // Dirty.
             cacheFrameIndex = -1;
             this._transformDirty = true;
             this._cachedFrameIndex = -1;
@@ -499,7 +490,7 @@ var Slot = /** @class */ (function (_super) {
             if (this._displayList.length !== value.length) {
                 this._displayList.length = value.length;
             }
-            for (var i = 0, l = value.length; i < l; ++i) {
+            for (var i = 0, l = value.length; i < l; ++i) { // Retain input render displays.
                 var eachDisplay = value[i];
                 if (eachDisplay && eachDisplay !== this._rawDisplay && eachDisplay !== this._meshDisplay &&
                     !(eachDisplay instanceof Armature_1.Armature) && this._displayList.indexOf(eachDisplay) < 0) {
@@ -752,7 +743,7 @@ var Slot = /** @class */ (function (_super) {
                 return;
             }
             var displayListLength = this._displayList.length;
-            if (this._displayIndex < 0 && displayListLength === 0) {
+            if (this._displayIndex < 0 && displayListLength === 0) { // Emprty.
                 this._displayIndex = 0;
             }
             if (this._displayIndex < 0) {

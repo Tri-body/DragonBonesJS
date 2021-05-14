@@ -215,25 +215,25 @@ var DataParser = /** @class */ (function () {
         }
         var insertedFrame = null;
         var replacedFrame = frames[frameStart];
-        if (replacedFrame && (frameStart === 0 || frames[frameStart - 1] === replacedFrame.prev)) {
+        if (replacedFrame && (frameStart === 0 || frames[frameStart - 1] === replacedFrame.prev)) { // Key frame.
             insertedFrame = replacedFrame;
         }
         else {
             insertedFrame = BaseObject_1.BaseObject.borrowObject(FrameData_1.AnimationFrameData); // Create frame.
             insertedFrame.position = frameStart / this._armature.frameRate;
             frames[frameStart] = insertedFrame;
-            for (var i = frameStart + 1, l = frames.length; i < l; ++i) {
+            for (var i = frameStart + 1, l = frames.length; i < l; ++i) { // Clear replaced frame.
                 if (replacedFrame && frames[i] === replacedFrame) {
                     frames[i] = null;
                 }
             }
         }
-        if (actions) {
+        if (actions) { // Merge actions.
             for (var i = 0, l = actions.length; i < l; ++i) {
                 insertedFrame.actions.push(actions[i]);
             }
         }
-        if (events) {
+        if (events) { // Merge events.
             for (var i = 0, l = events.length; i < l; ++i) {
                 insertedFrame.events.push(events[i]);
             }

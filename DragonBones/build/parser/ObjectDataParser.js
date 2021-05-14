@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var DataParser_1 = require("./DataParser");
 var ArmatureData_1 = require("../model/ArmatureData");
 var BaseObject_1 = require("../core/BaseObject");
@@ -26,7 +17,7 @@ var TextureData_1 = require("../texture/TextureData");
  * @private
  */
 var ObjectDataParser = /** @class */ (function (_super) {
-    __extends(ObjectDataParser, _super);
+    tslib_1.__extends(ObjectDataParser, _super);
     /**
      * @private
      */
@@ -149,7 +140,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             (ObjectDataParser.DEFAULT_ACTIONS in rawData)) {
             this._parseActionData(rawData, armature.actions, null, null);
         }
-        if (this._isOldData && this._isGlobalTransform) {
+        if (this._isOldData && this._isGlobalTransform) { // Support 2.x ~ 3.x data.
             this._globalToLocal(armature);
         }
         this._armature = null;
@@ -170,7 +161,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         if (ObjectDataParser.TRANSFORM in rawData) {
             this._parseTransform(rawData[ObjectDataParser.TRANSFORM], bone.transform);
         }
-        if (this._isOldData) {
+        if (this._isOldData) { // Support 2.x ~ 3.x data.
             bone.inheritScale = false;
         }
         return bone;
@@ -207,7 +198,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         slot.zOrder = ObjectDataParser._getNumber(rawData, ObjectDataParser.Z, zOrder); // Support 2.x ~ 3.x data.
         slot.name = ObjectDataParser._getString(rawData, ObjectDataParser.NAME, null);
         slot.parent = this._armature.getBone(ObjectDataParser._getString(rawData, ObjectDataParser.PARENT, null));
-        if ((ObjectDataParser.COLOR in rawData) || (ObjectDataParser.COLOR_TRANSFORM in rawData)) {
+        if ((ObjectDataParser.COLOR in rawData) || (ObjectDataParser.COLOR_TRANSFORM in rawData)) { // Support 2.x ~ 3.x data.
             slot.color = ArmatureData_1.SlotData.generateColor();
             this._parseColorTransform(rawData[ObjectDataParser.COLOR] || rawData[ObjectDataParser.COLOR_TRANSFORM], slot.color);
         }
@@ -239,7 +230,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             var slots = rawData[ObjectDataParser.SLOT];
             var zOrder = 0;
             for (var i = 0, l = slots.length; i < l; ++i) {
-                if (this._isOldData) {
+                if (this._isOldData) { // Support 2.x ~ 3.x data.
                     this._armature.addSlot(this._parseSlot(slots[i], zOrder++));
                 }
                 skin.addSlot(this._parseSkinSlotData(slots[i]));
@@ -284,7 +275,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             display.pivot.x = ObjectDataParser._getNumber(pivotObject, ObjectDataParser.X, 0);
             display.pivot.y = ObjectDataParser._getNumber(pivotObject, ObjectDataParser.Y, 0);
         }
-        else if (this._isOldData) {
+        else if (this._isOldData) { // Support 2.x ~ 3.x data.
             var transformObject = rawData[ObjectDataParser.TRANSFORM];
             display.isRelativePivot = false;
             display.pivot.x = ObjectDataParser._getNumber(transformObject, ObjectDataParser.PIVOT_X, 0) * this._armature.scale;
@@ -369,7 +360,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             var y = mesh.vertices[iN] = rawVertices[iN] * this._armature.scale;
             mesh.uvs[i] = rawUVs[i];
             mesh.uvs[iN] = rawUVs[iN];
-            if (mesh.skinned) {
+            if (mesh.skinned) { // If mesh is skinned, transform point by bone bind pose.
                 var rawWeights = rawData[ObjectDataParser.WEIGHTS];
                 var numBones = rawWeights[iW]; // uint
                 var indices = mesh.boneIndices[vertexIndex] = new Array(numBones);
@@ -496,7 +487,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                 animation.addFFDTimeline(this._parseFFDTimeline(ffdTimelines[i]));
             }
         }
-        if (this._isOldData) {
+        if (this._isOldData) { // Support 2.x ~ 3.x data.
             this._isAutoTween = ObjectDataParser._getBoolean(rawData, ObjectDataParser.AUTO_TWEEN, true);
             this._animationTweenEasing = ObjectDataParser._getNumber(rawData, ObjectDataParser.TWEEN_EASING, 0) || 0;
             animation.playTimes = ObjectDataParser._getNumber(rawData, ObjectDataParser.LOOP, 1);
@@ -515,7 +506,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         }
         for (var i in this._armature.bones) {
             var bone = this._armature.bones[i];
-            if (!animation.getBoneTimeline(bone.name)) {
+            if (!animation.getBoneTimeline(bone.name)) { // Add default bone timeline for cache if do not have one.
                 var boneTimeline = BaseObject_1.BaseObject.borrowObject(TimelineData_1.BoneTimelineData);
                 var boneFrame = BaseObject_1.BaseObject.borrowObject(FrameData_1.BoneFrameData);
                 boneTimeline.bone = bone;
@@ -525,7 +516,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         }
         for (var i in this._armature.slots) {
             var slot = this._armature.slots[i];
-            if (!animation.getSlotTimeline(slot.name)) {
+            if (!animation.getSlotTimeline(slot.name)) { // Add default slot timeline for cache if do not have one.
                 var slotTimeline = BaseObject_1.BaseObject.borrowObject(TimelineData_1.SlotTimelineData);
                 var slotFrame = BaseObject_1.BaseObject.borrowObject(FrameData_1.SlotFrameData);
                 slotTimeline.slot = slot;
@@ -539,7 +530,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                 }
                 slotTimeline.frames[0] = slotFrame;
                 animation.addSlotTimeline(slotTimeline);
-                if (this._isOldData) {
+                if (this._isOldData) { // Support 2.x ~ 3.x data.
                     slotFrame.displayIndex = -1;
                 }
             }
@@ -556,12 +547,12 @@ var ObjectDataParser = /** @class */ (function (_super) {
         this._parseTimeline(rawData, timeline, this._parseBoneFrame);
         var originalTransform = timeline.originalTransform;
         var prevFrame = null;
-        for (var i = 0, l = timeline.frames.length; i < l; ++i) {
+        for (var i = 0, l = timeline.frames.length; i < l; ++i) { // bone transform pose = origin + animation origin + animation.
             var frame = timeline.frames[i];
             if (!prevFrame) {
                 originalTransform.copyFrom(frame.transform);
                 frame.transform.identity();
-                if (originalTransform.scaleX === 0) {
+                if (originalTransform.scaleX === 0) { // Pose scale and origin scale can not be 0. (poseScale = originScale * animationOriginScale * animationScale)
                     originalTransform.scaleX = 0.001;
                     //frame.transform.scaleX = 0;
                 }
@@ -575,7 +566,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             }
             prevFrame = frame;
         }
-        if (this._isOldData && (ObjectDataParser.PIVOT_X in rawData || ObjectDataParser.PIVOT_Y in rawData)) {
+        if (this._isOldData && (ObjectDataParser.PIVOT_X in rawData || ObjectDataParser.PIVOT_Y in rawData)) { // Support 2.x ~ 3.x data.
             this._timelinePivot.x = ObjectDataParser._getNumber(rawData, ObjectDataParser.PIVOT_X, 0.0) * this._armature.scale;
             this._timelinePivot.y = ObjectDataParser._getNumber(rawData, ObjectDataParser.PIVOT_Y, 0.0) * this._armature.scale;
         }
@@ -672,7 +663,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         if (ObjectDataParser.TRANSFORM in rawData) {
             var transformObject = rawData[ObjectDataParser.TRANSFORM];
             this._parseTransform(transformObject, frame.transform);
-            if (this._isOldData) {
+            if (this._isOldData) { // Support 2.x ~ 3.x data.
                 this._helpPoint.x = this._timelinePivot.x + ObjectDataParser._getNumber(transformObject, ObjectDataParser.PIVOT_X, 0.0) * this._armature.scale;
                 this._helpPoint.y = this._timelinePivot.y + ObjectDataParser._getNumber(transformObject, ObjectDataParser.PIVOT_Y, 0.0) * this._armature.scale;
                 frame.transform.toMatrix(this._helpMatrix);
@@ -703,14 +694,14 @@ var ObjectDataParser = /** @class */ (function (_super) {
         var frame = BaseObject_1.BaseObject.borrowObject(FrameData_1.SlotFrameData);
         frame.displayIndex = ObjectDataParser._getNumber(rawData, ObjectDataParser.DISPLAY_INDEX, 0);
         this._parseTweenFrame(rawData, frame, frameStart, frameCount);
-        if ((ObjectDataParser.COLOR in rawData) || (ObjectDataParser.COLOR_TRANSFORM in rawData)) {
+        if ((ObjectDataParser.COLOR in rawData) || (ObjectDataParser.COLOR_TRANSFORM in rawData)) { // Support 2.x ~ 3.x data. (colorTransform key)
             frame.color = FrameData_1.SlotFrameData.generateColor();
             this._parseColorTransform(rawData[ObjectDataParser.COLOR] || rawData[ObjectDataParser.COLOR_TRANSFORM], frame.color);
         }
         else {
             frame.color = FrameData_1.SlotFrameData.DEFAULT_COLOR;
         }
-        if (this._isOldData) {
+        if (this._isOldData) { // Support 2.x ~ 3.x data.
             if (ObjectDataParser._getBoolean(rawData, ObjectDataParser.HIDE, false)) {
                 frame.displayIndex = -1;
             }
@@ -754,7 +745,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                     y = rawVertices[i + 1 - offset] * this._armature.scale;
                 }
             }
-            if (mesh.skinned) {
+            if (mesh.skinned) { // If mesh is skinned, transform point by bone bind pose.
                 mesh.slotPose.transformPoint(x, y, this._helpPoint, true);
                 x = this._helpPoint.x;
                 y = this._helpPoint.y;
@@ -780,7 +771,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             if (ObjectDataParser.TWEEN_EASING in rawData) {
                 frame.tweenEasing = ObjectDataParser._getNumber(rawData, ObjectDataParser.TWEEN_EASING, DragonBones_1.DragonBones.NO_TWEEN);
             }
-            else if (this._isOldData) {
+            else if (this._isOldData) { // Support 2.x ~ 3.x data.
                 frame.tweenEasing = this._isAutoTween ? this._animationTweenEasing : DragonBones_1.DragonBones.NO_TWEEN;
             }
             else {
@@ -815,7 +806,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
         this._timeline = timeline;
         if (ObjectDataParser.FRAME in rawData) {
             var rawFrames = rawData[ObjectDataParser.FRAME];
-            if (rawFrames.length === 1) {
+            if (rawFrames.length === 1) { // Only one frame.
                 timeline.frames.length = 1;
                 timeline.frames[0] = frameParser.call(this, rawFrames[0], 0, ObjectDataParser._getNumber(rawFrames[0], ObjectDataParser.DURATION, 1));
             }
@@ -825,7 +816,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                 var frameCount = 0;
                 var frame = null;
                 var prevFrame = null;
-                for (var i = 0, iW = 0, l = timeline.frames.length; i < l; ++i) {
+                for (var i = 0, iW = 0, l = timeline.frames.length; i < l; ++i) { // Fill frame link.
                     if (frameStart + frameCount <= i && iW < rawFrames.length) {
                         var rawFrame = rawFrames[iW++];
                         frameStart = i;
@@ -834,7 +825,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                         if (prevFrame) {
                             prevFrame.next = frame;
                             frame.prev = prevFrame;
-                            if (this._isOldData) {
+                            if (this._isOldData) { // Support 2.x ~ 3.x data.
                                 if (prevFrame instanceof FrameData_1.TweenFrameData && ObjectDataParser._getNumber(rawFrame, ObjectDataParser.DISPLAY_INDEX, 0) === -1) {
                                     prevFrame.tweenEasing = DragonBones_1.DragonBones.NO_TWEEN;
                                 }
@@ -848,7 +839,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
                 frame = timeline.frames[0];
                 prevFrame.next = frame;
                 frame.prev = prevFrame;
-                if (this._isOldData) {
+                if (this._isOldData) { // Support 2.x ~ 3.x data.
                     if (prevFrame instanceof FrameData_1.TweenFrameData && ObjectDataParser._getNumber(rawFrames[0], ObjectDataParser.DISPLAY_INDEX, 0) === -1) {
                         prevFrame.tweenEasing = DragonBones_1.DragonBones.NO_TWEEN;
                     }
@@ -862,7 +853,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
      */
     ObjectDataParser.prototype._parseActionData = function (rawData, actions, bone, slot) {
         var rawActions = rawData[ObjectDataParser.ACTION] || rawData[ObjectDataParser.ACTIONS] || rawData[ObjectDataParser.DEFAULT_ACTIONS];
-        if (typeof rawActions === "string") {
+        if (typeof rawActions === "string") { // Support string action.
             var actionData = BaseObject_1.BaseObject.borrowObject(DragonBonesData_1.ActionData);
             actionData.type = 0 /* Play */;
             actionData.bone = bone;
@@ -871,7 +862,7 @@ var ObjectDataParser = /** @class */ (function (_super) {
             actionData.animationConfig.animation = rawActions;
             actions.push(actionData);
         }
-        else if (rawActions instanceof Array) {
+        else if (rawActions instanceof Array) { // Support [{gotoAndPlay: "animationName"}, ...] or [["gotoAndPlay", "animationName", ...], ...]
             for (var i = 0, l = rawActions.length; i < l; ++i) {
                 var actionObject = rawActions[i];
                 var isArray = actionObject instanceof Array;
@@ -1043,10 +1034,10 @@ var ObjectDataParser = /** @class */ (function (_super) {
             textureAtlasData.width = ObjectDataParser._getNumber(rawData, ObjectDataParser.WIDTH, 0.0);
             textureAtlasData.height = ObjectDataParser._getNumber(rawData, ObjectDataParser.HEIGHT, 0.0);
             // Texture format.
-            if (scale > 0.0) {
+            if (scale > 0.0) { // Use params scale.
                 textureAtlasData.scale = scale;
             }
-            else {
+            else { // Use data scale.
                 scale = textureAtlasData.scale = ObjectDataParser._getNumber(rawData, ObjectDataParser.SCALE, textureAtlasData.scale);
             }
             scale = 1.0 / scale;

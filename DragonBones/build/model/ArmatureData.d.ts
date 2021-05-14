@@ -19,7 +19,7 @@ export declare class ArmatureData extends BaseObject {
      * @private
      */
     static toString(): string;
-    private static _onSortSlots(a, b);
+    private static _onSortSlots;
     /**
      * @private
      */
@@ -109,8 +109,8 @@ export declare class ArmatureData extends BaseObject {
      * @private
      */
     protected _onClear(): void;
-    private _sortBones();
-    private _sortSlots();
+    private _sortBones;
+    private _sortSlots;
     /**
      * @private
      */
@@ -419,7 +419,7 @@ export declare class BoundingBoxData extends BaseObject {
     /**
      * Compute the bit code for a point (x, y) using the clip rectangle
      */
-    private static _computeOutCode(x, y, xMin, yMin, xMax, yMax);
+    private static _computeOutCode;
     /**
      * @private
      */

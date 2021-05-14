@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var DragonBones_1 = require("../core/DragonBones");
 var Rectangle_1 = require("../geom/Rectangle");
@@ -19,7 +10,7 @@ var Rectangle_1 = require("../geom/Rectangle");
  * @version DragonBones 3.0
  */
 var TextureAtlasData = /** @class */ (function (_super) {
-    __extends(TextureAtlasData, _super);
+    tslib_1.__extends(TextureAtlasData, _super);
     /**
      * @internal
      * @private
@@ -93,7 +84,7 @@ exports.TextureAtlasData = TextureAtlasData;
  * @private
  */
 var TextureData = /** @class */ (function (_super) {
-    __extends(TextureData, _super);
+    tslib_1.__extends(TextureData, _super);
     function TextureData() {
         var _this = _super.call(this) || this;
         _this.region = new Rectangle_1.Rectangle();

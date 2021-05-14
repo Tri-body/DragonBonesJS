@@ -1,15 +1,6 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 var BaseObject_1 = require("../core/BaseObject");
 var DragonBones_1 = require("../core/DragonBones");
 /**
@@ -18,7 +9,7 @@ var DragonBones_1 = require("../core/DragonBones");
  * @version DragonBones 5.0
  */
 var CustomData = /** @class */ (function (_super) {
-    __extends(CustomData, _super);
+    tslib_1.__extends(CustomData, _super);
     /**
      * @internal
      * @private
@@ -93,7 +84,7 @@ exports.CustomData = CustomData;
  * @private
  */
 var EventData = /** @class */ (function (_super) {
-    __extends(EventData, _super);
+    tslib_1.__extends(EventData, _super);
     function EventData() {
         return _super.call(this) || this;
     }
@@ -117,7 +108,7 @@ exports.EventData = EventData;
  * @private
  */
 var ActionData = /** @class */ (function (_super) {
-    __extends(ActionData, _super);
+    tslib_1.__extends(ActionData, _super);
     function ActionData() {
         return _super.call(this) || this;
     }
@@ -144,7 +135,7 @@ exports.ActionData = ActionData;
  * @version DragonBones 3.0
  */
 var DragonBonesData = /** @class */ (function (_super) {
-    __extends(DragonBonesData, _super);
+    tslib_1.__extends(DragonBonesData, _super);
     /**
      * @internal
      * @private
