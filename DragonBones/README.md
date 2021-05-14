@@ -1,4 +1,4 @@
-# DragonBones common library
+# DragonBones npm module library
 
 ## How to build
 * $ `npm install`
