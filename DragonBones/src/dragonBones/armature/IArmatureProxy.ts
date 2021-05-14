@@ -39,9 +39,3 @@ export interface IArmatureProxy extends IEventDispatcher {
      */
     animation: Animation;
 }
-/**
- * @deprecated
- * @see dragonBones.IArmatureProxy
- */
-export interface IArmatureDisplay extends IArmatureProxy {
-}

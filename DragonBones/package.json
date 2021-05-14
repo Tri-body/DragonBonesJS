@@ -1,12 +1,16 @@
 {
-  "name": "dragonbones",
-  "version": "1.0.0",
+  "name": "dragonbonesjs",
+  "version": "5.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "rm -rf ./build && tsc -p ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "devDependencies": {
+    "typescript": "^2.6.2"
+  }
 }
