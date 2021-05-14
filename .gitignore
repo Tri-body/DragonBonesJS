@@ -21,3 +21,4 @@ lib-cov
 *.gz
 
 build
+package-lock.json
