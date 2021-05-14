@@ -1,3 +1,15 @@
+import { TimelineState, BoneTimelineState, TweenState, TweenTimelineState, SlotTimelineState, ConstraintTimelineState } from "./BaseTimelineState";
+import { ActionType, BinaryOffset } from "../core/DragonBones";
+import { BaseObject } from "../core/BaseObject";
+import { EventObject } from "../event/EventObject";
+import { TimelineData } from "../model/AnimationData";
+import { Transform } from "../geom/Transform";
+import { Surface } from "../armature/Surface";
+import { Armature } from "../armature/Armature";
+import { AnimationState } from "./AnimationState";
+import { IKConstraint } from "../armature/Constraint";
+import { IKConstraintData } from "../model/ConstraintData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +32,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -1176,4 +1187,3 @@ namespace dragonBones {
             }
         }
     }
-}

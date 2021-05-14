@@ -1,3 +1,8 @@
+import { BaseObject } from "../core/BaseObject";
+import { Map } from "../core/DragonBones";
+import { DisplayData } from "./DisplayData";
+import { ArmatureData } from "./ArmatureData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +25,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The skin data, typically a armature data instance contains at least one skinData.
      * @version DragonBones 3.0
@@ -112,4 +116,3 @@ namespace dragonBones {
             return this.displays[slotName];
         }
     }
-}

@@ -1,3 +1,8 @@
+import { WorldClock } from "../animation/WorldClock";
+import { EventObject } from "../event/EventObject";
+import { BaseObject } from "./BaseObject";
+import { IEventDispatcher } from "../event/IEventDispatcher";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +25,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -339,7 +343,6 @@ namespace dragonBones {
             return this._eventManager;
         }
     }
-}
 //
 if (typeof global === "undefined") {
     var global = window as any;
@@ -359,14 +362,14 @@ if (!Date.now) {
     };
 }
 // Weixin can not support typescript extends.
-var __extends: any = function (t: any, e: any) {
-    function r(this: any) {
-        this.constructor = t;
-    }
-    for (var i in e) {
-        if ((e as any).hasOwnProperty(i)) {
-            t[i] = e[i];
-        }
-    }
-    r.prototype = e.prototype, t.prototype = new (r as any)();
-};
+// var __extends: any = function (t: any, e: any) {
+//     function r(this: any) {
+//         this.constructor = t;
+//     }
+//     for (var i in e) {
+//         if ((e as any).hasOwnProperty(i)) {
+//             t[i] = e[i];
+//         }
+//     }
+//     r.prototype = e.prototype, t.prototype = new (r as any)();
+// };

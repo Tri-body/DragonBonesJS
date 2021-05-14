@@ -1,3 +1,12 @@
+import { TransformObject } from "./TransformObject";
+import { OffsetMode, DragonBones, BoneType } from "../core/DragonBones";
+import { Transform } from "../geom/Transform";
+import { BlendState } from "../animation/AnimationState";
+import { BoneData } from "../model/ArmatureData";
+import { Surface } from "./Surface";
+import { Armature } from "./Armature";
+import { Slot } from "./Slot";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +29,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - Bone is one of the most important logical units in the armature animation system,
      * and is responsible for the realization of translate, rotation, scaling in the animations.
@@ -585,4 +593,3 @@ namespace dragonBones {
             return null;
         }
     }
-}

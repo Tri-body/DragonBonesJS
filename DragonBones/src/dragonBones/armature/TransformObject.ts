@@ -1,3 +1,9 @@
+import { BaseObject } from "../core/BaseObject";
+import { Matrix } from "../geom/Matrix";
+import { Transform } from "../geom/Transform";
+import { Point } from "../geom/Point";
+import { Armature } from "./Armature";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +26,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The base class of the transform object.
      * @see dragonBones.Transform
@@ -142,4 +147,3 @@ namespace dragonBones {
             return this._armature;
         }
         }
-}

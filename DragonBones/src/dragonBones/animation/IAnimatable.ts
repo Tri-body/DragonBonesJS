@@ -1,3 +1,5 @@
+import { WorldClock } from "./WorldClock";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +22,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - Play animation interface. (Both Armature and Wordclock implement the interface)
      * Any instance that implements the interface can be added to the Worldclock instance and advance time by Worldclock instance uniformly.
@@ -73,4 +74,3 @@ namespace dragonBones {
          */
         clock: WorldClock | null;
     }
-}

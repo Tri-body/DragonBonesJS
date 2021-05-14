@@ -1,3 +1,17 @@
+import { BaseObject } from "../core/BaseObject";
+import { IAnimatable } from "../animation/IAnimatable";
+import { Slot } from "./Slot";
+import { Bone } from "./Bone";
+import { Constraint } from "./Constraint";
+import { EventObject } from "../event/EventObject";
+import { ArmatureData } from "../model/ArmatureData";
+import { IArmatureProxy } from "./IArmatureProxy";
+import { TextureAtlasData } from "../model/TextureAtlasData";
+import { DragonBones, ActionType } from "../core/DragonBones";
+import { WorldClock } from "../animation/WorldClock";
+import { IEventDispatcher, EventStringType } from "../event/IEventDispatcher";
+import { Animation } from "../animation/Animation";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +34,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - Armature is the core of the skeleton animation system.
      * @see dragonBones.ArmatureData
@@ -965,4 +978,3 @@ namespace dragonBones {
             return this._display;
         }
     }
-}

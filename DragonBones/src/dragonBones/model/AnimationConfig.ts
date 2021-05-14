@@ -1,3 +1,7 @@
+import { BaseObject } from "../core/BaseObject";
+import { AnimationFadeOutMode, TweenType } from "../core/DragonBones";
+import { Armature } from "../armature/Armature";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +24,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The animation config is used to describe all the information needed to play an animation state.
      * The API is still in the experimental phase and may encounter bugs or stability or compatibility issues when used.
@@ -399,4 +402,3 @@ namespace dragonBones {
             }
         }
     }
-}

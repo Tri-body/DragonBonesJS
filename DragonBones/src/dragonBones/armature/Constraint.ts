@@ -1,3 +1,15 @@
+import { BaseObject } from "../core/BaseObject";
+import { Matrix } from "../geom/Matrix";
+import { Transform } from "../geom/Transform";
+import { Point } from "../geom/Point";
+import { ConstraintData, IKConstraintData, PathConstraintData } from "../model/ConstraintData";
+import { Armature } from "./Armature";
+import { Bone } from "./Bone";
+import { Slot } from "./Slot";
+import { VerticesData, PathDisplayData } from "../model/DisplayData";
+import { BinaryOffset, RotateMode, SpacingMode, PositionMode } from "../core/DragonBones";
+import { DeformVertices } from "./DeformVertices";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +32,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -68,7 +79,7 @@ namespace dragonBones {
         public static toString(): string {
             return "[class dragonBones.IKConstraint]";
         }
-
+        //@ts-ignore
         private _scaleEnabled: boolean; // TODO
         /**
          * - For timeline state.
@@ -834,4 +845,3 @@ namespace dragonBones {
 
         }
     }
-}

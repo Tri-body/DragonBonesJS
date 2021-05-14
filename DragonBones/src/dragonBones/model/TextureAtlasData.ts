@@ -1,3 +1,7 @@
+import { BaseObject } from "../core/BaseObject";
+import { Map } from "../core/DragonBones";
+import { Rectangle } from "../geom/Rectangle";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +24,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The texture atlas data.
      * @version DragonBones 3.0
@@ -176,4 +179,3 @@ namespace dragonBones {
             }
         }
     }
-}

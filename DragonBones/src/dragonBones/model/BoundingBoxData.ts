@@ -1,3 +1,6 @@
+import { BaseObject } from "../core/BaseObject";
+import { BoundingBoxType } from "../core/DragonBones";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +23,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The base class of bounding box data.
      * @see dragonBones.RectangleData
@@ -726,4 +728,3 @@ namespace dragonBones {
             return intersectionCount;
         }
     }
-}

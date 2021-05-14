@@ -1,3 +1,13 @@
+import { ObjectDataParser } from "./ObjectDataParser";
+import { TimelineType, BinaryOffset, DragonBones } from "../core/DragonBones";
+import { TimelineData, AnimationData } from "../model/AnimationData";
+import { BaseObject } from "../core/BaseObject";
+import { VerticesData, WeightData, MeshDisplayData, PathDisplayData } from "../model/DisplayData";
+import { DataParser } from "./DataParser";
+import { SurfaceData } from "../model/ArmatureData";
+import { webAssemblyModule } from "../modules";
+import { DragonBonesData } from "../model/DragonBonesData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +30,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -28,8 +37,11 @@ namespace dragonBones {
         private _binaryOffset: number;
         private _binary: ArrayBuffer;
         private _intArrayBuffer: Int16Array;
+        // @ts-ignore
         private _floatArrayBuffer: Float32Array;
+        // @ts-ignore
         private _frameIntArrayBuffer: Int16Array;
+        // @ts-ignore
         private _frameFloatArrayBuffer: Float32Array;
         private _frameArrayBuffer: Int16Array;
         private _timelineArrayBuffer: Uint16Array;
@@ -472,4 +484,3 @@ namespace dragonBones {
             return BinaryDataParser._binaryDataParserInstance;
         }
     }
-}

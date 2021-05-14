@@ -1,3 +1,13 @@
+import { BaseObject } from "../core/BaseObject";
+import { DragonBonesData } from "../model/DragonBonesData";
+import { AnimationData, TimelineData } from "../model/AnimationData";
+import { Armature } from "../armature/Armature";
+import { AnimationState, BonePose } from "./AnimationState";
+import { BinaryOffset, TweenType } from "../core/DragonBones";
+import { Bone } from "../armature/Bone";
+import { Slot } from "../armature/Slot";
+import { Constraint } from "../armature/Constraint";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +30,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -412,4 +421,3 @@ namespace dragonBones {
             this.constraint = null as any; //
         }
     }
-}

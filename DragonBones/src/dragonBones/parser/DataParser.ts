@@ -1,3 +1,10 @@
+import { ArmatureType, DisplayType, BoneType, BoundingBoxType, ActionType, BlendMode, PositionMode, SpacingMode, RotateMode } from "../core/DragonBones";
+import { DragonBonesData } from "../model/DragonBonesData";
+import { TextureAtlasData } from "../model/TextureAtlasData";
+import { BinaryDataParser } from "./BinaryDataParser";
+import { ObjectDataParser } from "./ObjectDataParser";
+import { Rectangle } from "../geom/Rectangle";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +27,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -55,17 +61,17 @@ namespace dragonBones {
         protected static readonly DRADON_BONES: string = "dragonBones";
         protected static readonly USER_DATA: string = "userData";
         protected static readonly ARMATURE: string = "armature";
-        protected static readonly BONE: string = "bone";
-        protected static readonly SURFACE: string = "surface";
-        protected static readonly SLOT: string = "slot";
-        protected static readonly CONSTRAINT: string = "constraint";
+        public static readonly BONE: string = "bone";
+        public static readonly SURFACE: string = "surface";
+        public static readonly SLOT: string = "slot";
+        public static readonly CONSTRAINT: string = "constraint";
         protected static readonly IK: string = "ik";
         protected static readonly PATH_CONSTRAINT: string = "path";
 
         protected static readonly SKIN: string = "skin";
         protected static readonly DISPLAY: string = "display";
-        protected static readonly ANIMATION: string = "animation";
-        protected static readonly Z_ORDER: string = "zOrder";
+        public static readonly ANIMATION: string = "animation";
+        public static readonly Z_ORDER: string = "zOrder";
         protected static readonly FFD: string = "ffd";
         protected static readonly FRAME: string = "frame";
         protected static readonly TRANSLATE_FRAME: string = "translateFrame";
@@ -91,7 +97,7 @@ namespace dragonBones {
         protected static readonly FRAME_RATE: string = "frameRate";
         protected static readonly TYPE: string = "type";
         protected static readonly SUB_TYPE: string = "subType";
-        protected static readonly NAME: string = "name";
+        public static readonly NAME: string = "name";
         protected static readonly PARENT: string = "parent";
         protected static readonly TARGET: string = "target";
         protected static readonly STAGE: string = "stage";
@@ -112,20 +118,20 @@ namespace dragonBones {
         protected static readonly CHAIN: string = "chain";
         protected static readonly WEIGHT: string = "weight";
 
-        protected static readonly FADE_IN_TIME: string = "fadeInTime";
-        protected static readonly PLAY_TIMES: string = "playTimes";
-        protected static readonly SCALE: string = "scale";
-        protected static readonly OFFSET: string = "offset";
-        protected static readonly POSITION: string = "position";
-        protected static readonly DURATION: string = "duration";
-        protected static readonly TWEEN_EASING: string = "tweenEasing";
+        public static readonly FADE_IN_TIME: string = "fadeInTime";
+        public static readonly PLAY_TIMES: string = "playTimes";
+        public static readonly SCALE: string = "scale";
+        public static readonly OFFSET: string = "offset";
+        public static readonly POSITION: string = "position";
+        public static readonly DURATION: string = "duration";
+        public static readonly TWEEN_EASING: string = "tweenEasing";
         protected static readonly TWEEN_ROTATE: string = "tweenRotate";
         protected static readonly TWEEN_SCALE: string = "tweenScale";
         protected static readonly CLOCK_WISE: string = "clockwise";
         protected static readonly CURVE: string = "curve";
         protected static readonly SOUND: string = "sound";
         protected static readonly EVENT: string = "event";
-        protected static readonly ACTION: string = "action";
+        public static readonly ACTION: string = "action";
 
         protected static readonly X: string = "x";
         protected static readonly Y: string = "y";
@@ -172,7 +178,7 @@ namespace dragonBones {
 
         protected static readonly GOTO_AND_PLAY: string = "gotoAndPlay";
 
-        protected static readonly DEFAULT_NAME: string = "default";
+        public static readonly DEFAULT_NAME: string = "default";
 
         protected static _getArmatureType(value: string): ArmatureType {
             switch (value.toLowerCase()) {
@@ -408,4 +414,3 @@ namespace dragonBones {
             return textureAtlasData;
         }
     }
-}

@@ -1,3 +1,22 @@
+import { ObjectDataParser } from "../parser/ObjectDataParser";
+import { BinaryDataParser } from "../parser/BinaryDataParser";
+import { Map, DragonBones, BoneType, ConstraintType, DisplayType } from "../core/DragonBones";
+import { DragonBonesData } from "../model/DragonBonesData";
+import { TextureAtlasData, TextureData } from "../model/TextureAtlasData";
+import { DataParser } from "../parser/DataParser";
+import { ArmatureData, SlotData } from "../model/ArmatureData";
+import { Armature } from "../armature/Armature";
+import { BaseObject } from "../core/BaseObject";
+import { Bone } from "../armature/Bone";
+import { Surface } from "../armature/Surface";
+import { DisplayData, ImageDisplayData, MeshDisplayData, ArmatureDisplayData } from "../model/DisplayData";
+import { IKConstraint, PathConstraint } from "../armature/Constraint";
+import { Slot } from "../armature/Slot";
+import { EventObject } from "../event/EventObject";
+import { SkinData } from "../model/SkinData";
+import { AnimationData } from "../model/AnimationData";
+import { WorldClock } from "../animation/WorldClock";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +39,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - Base class for the factory that create the armatures. (Typically only one global factory instance is required)
      * The factory instance create armatures by parsed and added DragonBonesData instances and TextureAtlasData instances.
@@ -1095,4 +1113,3 @@ namespace dragonBones {
         public armature: ArmatureData;
         public skin: SkinData | null = null;
     }
-}

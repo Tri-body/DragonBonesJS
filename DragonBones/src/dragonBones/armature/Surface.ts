@@ -1,3 +1,10 @@
+import { Bone } from "./Bone";
+import { Transform } from "../geom/Transform";
+import { Matrix } from "../geom/Matrix";
+import { SurfaceData } from "../model/ArmatureData";
+import { BoneType } from "../core/DragonBones";
+import { Armature } from "./Armature";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +27,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -568,4 +574,3 @@ namespace dragonBones {
             this._localDirty = true;
         }
     }
-}

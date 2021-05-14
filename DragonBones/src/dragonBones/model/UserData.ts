@@ -1,3 +1,7 @@
+import { BaseObject } from "../core/BaseObject";
+import { ActionType } from "../core/DragonBones";
+import { BoneData, SlotData } from "./ArmatureData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +24,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The user custom data.
      * @version DragonBones 5.0
@@ -158,4 +161,3 @@ namespace dragonBones {
             this.data = null;
         }
     }
-}

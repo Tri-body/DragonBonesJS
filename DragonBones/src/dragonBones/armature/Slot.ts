@@ -1,3 +1,19 @@
+import { TransformObject } from "./TransformObject";
+import { BlendMode, DisplayType, DragonBones, BoneType } from "../core/DragonBones";
+import { Matrix } from "../geom/Matrix";
+import { ColorTransform } from "../geom/ColorTransform";
+import { DisplayData, VerticesData, MeshDisplayData, PathDisplayData, BoundingBoxDisplayData, ImageDisplayData, ArmatureDisplayData } from "../model/DisplayData";
+import { Armature } from "./Armature";
+import { SlotData } from "../model/ArmatureData";
+import { BoundingBoxData } from "../model/BoundingBoxData";
+import { TextureData } from "../model/TextureAtlasData";
+import { DeformVertices } from "./DeformVertices";
+import { Bone } from "./Bone";
+import { BaseObject } from "../core/BaseObject";
+import { ActionData } from "../model/UserData";
+import { EventObject } from "../event/EventObject";
+import { Surface } from "./Surface";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +36,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The slot attached to the armature, controls the display status and properties of the display object.
      * A bone can contain multiple slots.
@@ -1172,4 +1187,3 @@ namespace dragonBones {
             this.display = value;
         }
     }
-}

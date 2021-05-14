@@ -1,3 +1,17 @@
+import { BaseObject } from "../core/BaseObject";
+import { ArmatureType, Map, BoneType, BlendMode } from "../core/DragonBones";
+import { Rectangle } from "../geom/Rectangle";
+import { ActionData, UserData } from "./UserData";
+import { ConstraintData } from "./ConstraintData";
+import { SkinData } from "./SkinData";
+import { AnimationData } from "./AnimationData";
+import { CanvasData } from "./CanvasData";
+import { DragonBonesData } from "./DragonBonesData";
+import { Matrix } from "../geom/Matrix";
+import { Transform } from "../geom/Transform";
+import { MeshDisplayData } from "./DisplayData";
+import { ColorTransform } from "../geom/ColorTransform";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +34,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The armature data.
      * @version DragonBones 3.0
@@ -669,4 +682,3 @@ namespace dragonBones {
             this.parent = null as any; //
         }
     }
-}

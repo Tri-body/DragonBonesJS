@@ -1,3 +1,8 @@
+import { BaseObject } from "../core/BaseObject";
+import { ConstraintType, PositionMode, SpacingMode, RotateMode } from "../core/DragonBones";
+import { BoneData, SlotData } from "./ArmatureData";
+import { PathDisplayData } from "./DisplayData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +25,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -106,4 +110,3 @@ namespace dragonBones {
             this.bones.push(value);
         }
     }
-}

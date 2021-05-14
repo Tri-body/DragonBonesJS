@@ -1,3 +1,22 @@
+import { DragonBones, Map, ActionType, ArmatureType, BoneType, ConstraintType, BlendMode, DisplayType, BinaryOffset, BoundingBoxType, TimelineType, TweenType } from "../core/DragonBones";
+import { DataParser } from "./DataParser";
+import { BoneData, ArmatureData, SurfaceData, SlotData } from "../model/ArmatureData";
+import { DragonBonesData } from "../model/DragonBonesData";
+import { SkinData } from "../model/SkinData";
+import { MeshDisplayData, PathDisplayData, DisplayData, ImageDisplayData, ArmatureDisplayData, BoundingBoxDisplayData, WeightData } from "../model/DisplayData";
+import { AnimationData, TimelineData } from "../model/AnimationData";
+import { Matrix } from "../geom/Matrix";
+import { Transform } from "../geom/Transform";
+import { ColorTransform } from "../geom/ColorTransform";
+import { Point } from "../geom/Point";
+import { ActionData, UserData } from "../model/UserData";
+import { BaseObject } from "../core/BaseObject";
+import { CanvasData } from "../model/CanvasData";
+import { ConstraintData, IKConstraintData, PathConstraintData } from "../model/ConstraintData";
+import { BoundingBoxData, RectangleBoundingBoxData, EllipseBoundingBoxData, PolygonBoundingBoxData } from "../model/BoundingBoxData";
+import { webAssemblyModule } from "../modules";
+import { TextureAtlasData, TextureData } from "../model/TextureAtlasData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +39,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @internal
      */
@@ -901,8 +919,9 @@ namespace dragonBones {
             }
         }
 
+        // @ts-ignore
         protected _parseMeshGlue(rawData: any, mesh: MeshDisplayData): void {
-            rawData; mesh;
+            // rawData; mesh;
             // const rawWeights = rawData[DataParser.GLUE_WEIGHTS] as Array<number>;
             // const rawMeshes = rawData[DataParser.GLUE_MESHES] as Array<string>;
             // mesh.glue = BaseObject.borrowObject(GlueData);
@@ -2228,4 +2247,3 @@ namespace dragonBones {
         public frameStart: number = 0;
         public readonly actions: Array<number> = [];
     }
-}

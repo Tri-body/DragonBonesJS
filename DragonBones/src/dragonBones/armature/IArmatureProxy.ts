@@ -1,3 +1,6 @@
+import { IEventDispatcher } from "../event/IEventDispatcher";
+import { Armature } from "./Armature";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +23,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The armature proxy interface, the docking engine needs to implement it concretely.
      * @see dragonBones.Armature
@@ -90,4 +92,3 @@ namespace dragonBones {
          */
         readonly animation: Animation;
     }
-}

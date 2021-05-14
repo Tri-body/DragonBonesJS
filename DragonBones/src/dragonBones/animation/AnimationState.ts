@@ -1,3 +1,15 @@
+import { BaseObject } from "../core/BaseObject";
+import { BoneTimelineState, SlotTimelineState, ConstraintTimelineState, TimelineState } from "./BaseTimelineState";
+import { SurfaceTimelineState, AnimationTimelineState, ActionTimelineState, ZOrderTimelineState, IKConstraintTimelineState, BoneAllTimelineState, BoneTranslateTimelineState, BoneRotateTimelineState, DeformTimelineState, BoneScaleTimelineState, SlotDislayTimelineState, SlotColorTimelineState } from "./TimelineState";
+import { Map, TimelineType, BoneType, DisplayType } from "../core/DragonBones";
+import { AnimationData } from "../model/AnimationData";
+import { Armature } from "../armature/Armature";
+import { Surface } from "../armature/Surface";
+import { MeshDisplayData } from "../model/DisplayData";
+import { EventObject } from "../event/EventObject";
+import { AnimationConfig } from "../model/AnimationConfig";
+import { Transform } from "../geom/Transform";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +32,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The animation state is generated when the animation data is played.
      * @see dragonBones.Animation
@@ -1334,4 +1345,3 @@ namespace dragonBones {
             this.blendWeight = 0.0;
         }
     }
-}

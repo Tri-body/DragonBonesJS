@@ -1,3 +1,8 @@
+import { BaseObject } from "../core/BaseObject";
+import { Map, TimelineType } from "../core/DragonBones";
+import { ArmatureData, BoneData, SurfaceData, SlotData } from "./ArmatureData";
+import { ConstraintData } from "./ConstraintData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +25,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The animation data.
      * @version DragonBones 3.0
@@ -377,4 +381,3 @@ namespace dragonBones {
             this.frameIndicesOffset = -1;
         }
     }
-}

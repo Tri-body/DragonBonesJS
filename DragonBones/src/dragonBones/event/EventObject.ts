@@ -1,3 +1,12 @@
+import { BaseObject } from "../core/BaseObject";
+import { ActionData, UserData } from "../model/UserData";
+import { Armature } from "../armature/Armature";
+import { ActionType } from "../core/DragonBones";
+import { EventStringType } from "./IEventDispatcher";
+import { Bone } from "../armature/Bone";
+import { AnimationState } from "../animation/AnimationState";
+import { Slot } from "../armature/Slot";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +29,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The properties of the object carry basic information about an event,
      * which are passed as parameter or parameter's parameter to event listeners when an event occurs.
@@ -279,4 +287,3 @@ namespace dragonBones {
             this.data = null;
         }
     }
-}

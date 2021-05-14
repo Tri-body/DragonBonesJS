@@ -1,3 +1,5 @@
+import { IAnimatable } from "./IAnimatable";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +22,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - Worldclock provides clock support for animations, advance time for each IAnimatable object added to the instance.
      * @see dragonBones.IAnimateble
@@ -265,4 +266,3 @@ namespace dragonBones {
          */
         public static readonly clock: WorldClock = new WorldClock();
     }
-}

@@ -1,4 +1,5 @@
-namespace dragonBones {
+import { DragonBonesData } from "./model/DragonBonesData";
+
     /**
      * @internal
      * @private 
@@ -11,4 +12,3 @@ namespace dragonBones {
         // DragonBones embinding.
         setDataBinary(data: DragonBonesData, binaryPointer: number, intBytesLength: number, floatBytesLength: number, frameIntBytesLength: number, frameFloatBytesLength: number, frameBytesLength: number, timelineBytesLength: number): void;
     };
-}

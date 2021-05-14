@@ -1,3 +1,10 @@
+import { BaseObject } from "../core/BaseObject";
+import { AnimationState } from "./AnimationState";
+import { Map, AnimationFadeOutMode } from "../core/DragonBones";
+import { AnimationData } from "../model/AnimationData";
+import { Armature } from "../armature/Armature";
+import { AnimationConfig } from "../model/AnimationConfig";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +27,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The animation player is used to play the animation data and manage the animation states.
      * @see dragonBones.AnimationData
@@ -999,4 +1005,3 @@ namespace dragonBones {
             return list;
         }
     }
-}

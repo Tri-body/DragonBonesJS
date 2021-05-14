@@ -1,3 +1,5 @@
+import { EventObject } from "./EventObject";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +22,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * @private
      */
@@ -140,4 +141,3 @@ namespace dragonBones {
          */
         removeEvent(type: EventStringType, listener: Function, thisObject: any): void;
     }
-}

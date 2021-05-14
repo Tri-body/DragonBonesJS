@@ -1,3 +1,8 @@
+import { BaseObject } from "../core/BaseObject";
+import { ArmatureData } from "./ArmatureData";
+import { Map } from "../core/DragonBones";
+import { UserData } from "./UserData";
+
 /**
  * The MIT License (MIT)
  *
@@ -20,7 +25,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace dragonBones {
     /**
      * - The DragonBones data.
      * A DragonBones data contains multiple armature data.
@@ -210,4 +214,3 @@ namespace dragonBones {
             this.returnToPool();
         }
     }
-}
