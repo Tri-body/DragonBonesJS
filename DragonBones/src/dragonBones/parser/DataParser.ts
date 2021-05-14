@@ -1,8 +1,6 @@
 import { ArmatureType, DisplayType, BoneType, BoundingBoxType, ActionType, BlendMode, PositionMode, SpacingMode, RotateMode } from "../core/DragonBones";
 import { DragonBonesData } from "../model/DragonBonesData";
 import { TextureAtlasData } from "../model/TextureAtlasData";
-import { BinaryDataParser } from "./BinaryDataParser";
-import { ObjectDataParser } from "./ObjectDataParser";
 import { Rectangle } from "../geom/Rectangle";
 
 /**
@@ -364,15 +362,15 @@ import { Rectangle } from "../geom/Rectangle";
          * @deprecated
          * @language zh_CN
          */
-        public static parseDragonBonesData(rawData: any): DragonBonesData | null {
-            console.warn("Deprecated.");
-            if (rawData instanceof ArrayBuffer) {
-                return BinaryDataParser.getInstance().parseDragonBonesData(rawData);
-            }
-            else {
-                return ObjectDataParser.getInstance().parseDragonBonesData(rawData);
-            }
-        }
+        // public static parseDragonBonesData(rawData: any): DragonBonesData | null {
+        //     console.warn("Deprecated.");
+        //     if (rawData instanceof ArrayBuffer) {
+        //         return BinaryDataParser.getInstance().parseDragonBonesData(rawData);
+        //     }
+        //     else {
+        //         return ObjectDataParser.getInstance().parseDragonBonesData(rawData);
+        //     }
+        // }
         /**
          * - Deprecated, please refer to {@link dragonBones.BaseFactory#parsetTextureAtlasData()}.
          * @deprecated
