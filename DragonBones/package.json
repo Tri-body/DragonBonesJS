@@ -1,7 +1,7 @@
 {
-  "name": "dragonbonesjs",
+  "name": "dragonbonesjs-module",
   "version": "5.0.0",
-  "description": "",
+  "description": "dragonbonesjs npm module",
   "scripts": {
     "tsc": "rm -rf ./build && tsc -p ."
   },
